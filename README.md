@@ -1,7 +1,5 @@
 # Détection Automatisée de Défauts de Surface 
 
-Projet réalisé dans le cadre du cours **Deep Learning Appliqué en Entreprise**.
-
 L'objectif est de construire un système capable de classifier automatiquement des défauts de surface sur des pièces en acier, à partir d'images issues du dataset NEU-DET. Deux approches sont comparées : un CNN entraîné de zéro et un MobileNetV2 par transfer learning. Le tout est conclu par une analyse de l'impact économique en contexte industriel.
 
 
@@ -11,12 +9,12 @@ Le dataset utilisé est **NEU-DET**, un benchmark standard en contrôle qualité
 
 | Classe | Description |
 |---|---|
-| `crazing` | Craquelures — réseau de fines fissures en surface |
-| `inclusion` | Inclusions — particules étrangères intégrées au métal |
-| `patches` | Taches — zones de coloration irrégulière |
-| `pitted_surface` | Piqûres — petits cratères en surface |
-| `rolled-in_scale` | Calamine — résidus d'oxyde laminés |
-| `scratches` | Rayures — traces linéaires |
+| `crazing` | Craquelures : réseau de fines fissures en surface |
+| `inclusion` | Inclusions : particules étrangères intégrées au métal |
+| `patches` | Taches : zones de coloration irrégulière |
+| `pitted_surface` | Piqûres : petits cratères en surface |
+| `rolled-in_scale` | Calamine : résidus d'oxyde laminés |
+| `scratches` | Rayures : traces linéaires |
 
 Chaque classe contient 300 images (200×200 px), soit 1800 images au total. Le split train/validation est organisé dans `NEU-DET/train/` et `NEU-DET/validation/`.
 
@@ -46,7 +44,6 @@ L'entraînement se fait en **deux phases** :
 - **Phase 1** — le backbone est gelé, seule la nouvelle tête s'entraîne (lr = `1e-3`). Ça permet d'adapter rapidement les dernières couches sans écraser les features génériques déjà apprises.
 - **Phase 2 (fine-tuning)** — déclenchée automatiquement après l'early stopping de la phase 1. Les 5 derniers blocs du backbone sont dégelés avec un learning rate très faible (`1e-4`) pour affiner les représentations spécifiques aux défauts acier sans "oublier" ImageNet.
 
----
 
 ## Entraînement
 
@@ -116,9 +113,7 @@ python main.py
 python demo.py
 ```
 
-Le dossier `outputs/` est créé automatiquement. Tous les graphes et rapports y sont sauvegardés.
-
----
+Le dossier `outputs/` est créé pour tous les graphes et rapports y sont sauvegardés
 
 ## Dépendances
 
@@ -129,4 +124,4 @@ Le dossier `outputs/` est créé automatiquement. Tous les graphes et rapports y
 - matplotlib / seaborn
 - NumPy / Pillow
 
-*KODJO Messanh Yaovi — Deep Learning Appliqué en Entreprise*
+
